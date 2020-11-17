@@ -1,5 +1,9 @@
 # Soccer_Analysis
 
+# Dataset:
+
+https://www.kaggle.com/hugomathien/soccer/version/9 
+
 # Plan:
 
 1. Preprocess
