@@ -148,6 +148,26 @@ player_2014 <- subset(player_2014,
 player_name_2015 <- team_players_2015$player_name
 player_2015 <- subset(player_2015,
                       player_name %in% player_name_2015)
+
+# change dummies
+player_2014$left_foot <- ifelse(player_2014$preferred_foot == 'left', 1, 0)
+player_2014$right_foot <- ifelse(player_2014$preferred_foot == 'right', 1, 0)
+player_2015$left_foot <- ifelse(player_2015$preferred_foot == 'left', 1, 0)
+player_2015$right_foot <- ifelse(player_2015$preferred_foot == 'right', 1, 0)
+
+player_2014$attacking_work_rate <- replace(
+  player_2014$attacking_work_rate,player_2014$attacking_work_rate=='None',NA)
+player_2014$attack_high <- ifelse(player_2014$attacking_work_rate == 'high', 1, 0)
+player_2014$attack_medium <- ifelse(player_2014$attacking_work_rate == 'medium', 1, 0)
+
+player_2015$attacking_work_rate <- replace(
+  player_2015$attacking_work_rate,player_2015$attacking_work_rate=='None',NA)
+player_2015$attack_high <- ifelse(player_2015$attacking_work_rate == 'high', 1, 0)
+player_2015$attack_medium <- ifelse(player_2015$attacking_work_rate == 'medium', 1, 0)
+
+player_2014$defend_high <- ifelse(player_2014$defensive_work_rate == 'high', 1, 0)
+player_2014$defend_medium <- ifelse(player_2014$defensive_work_rate == 'medium', 1, 0)
+
 head(player_2014)
 head(player_2015)
 
