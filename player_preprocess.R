@@ -175,7 +175,7 @@ player_2015$defend_medium <- ifelse(player_2015$defensive_work_rate == 'medium',
 # LR
 player_2014.lr <-
   lm(overall_rating ~ 
-       height+weight+potential+crossing+finishing+heading_accuracy+short_passing+
+       height+weight+crossing+finishing+heading_accuracy+short_passing+
      volleys+dribbling+curve+free_kick_accuracy+long_passing+ball_control+
      acceleration+sprint_speed+agility+reactions+balance+shot_power+jumping+
      stamina+strength+long_shots+aggression+interceptions+positioning+vision+
@@ -185,8 +185,8 @@ player_2014.lr <-
    na.action = na.exclude, data = player_2014)
 summary(player_2014.lr)
 
-player_2015.predict <- predict(player_2014.lr, player_2015[,c(6,7,9,10,14:51)],
-        level=0.99)
+player_2015.predict <- predict(player_2014.lr, player_2015[,c(6,7,14:51)],
+        level=0.95)
 
 library(forecast)
 accuracy(player_2015.predict, player_2015$overall_rating)
