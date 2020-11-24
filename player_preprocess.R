@@ -150,3 +150,7 @@ player_2015 <- subset(player_2015,
                       player_name %in% player_name_2015)
 head(player_2014)
 head(player_2015)
+
+# export
+write.csv(player_2014,'player_2014.csv')
+write.csv(player_2015,'player_2015.csv')
