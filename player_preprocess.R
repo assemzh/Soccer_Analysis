@@ -140,15 +140,6 @@ player_2014 <- merge(player,player_attr_2014[,c(2:42)],
 player_2015 <- merge(player,player_attr_2015[,c(2:42)],
                      by=c('player_api_id','player_fifa_api_id'),
                      all.x = TRUE, all.y = TRUE)
-
-# filter only 3 leagues
-player_name_2014 <- team_players_2014$player_name
-player_2014 <- subset(player_2014,
-                      player_name %in% player_name_2014)
-player_name_2015 <- team_players_2015$player_name
-player_2015 <- subset(player_2015,
-                      player_name %in% player_name_2015)
-
 # change dummies
 player_2014$left_foot <- ifelse(player_2014$preferred_foot == 'left', 1, 0)
 player_2015$left_foot <- ifelse(player_2015$preferred_foot == 'left', 1, 0)
@@ -168,6 +159,39 @@ player_2014$defend_medium <- ifelse(player_2014$defensive_work_rate == 'medium',
 player_2015$defend_high <- ifelse(player_2015$defensive_work_rate == 'high', 1, 0)
 player_2015$defend_medium <- ifelse(player_2015$defensive_work_rate == 'medium', 1, 0)
 
+# filter only 3 leagues
+player_name_2014 <- subset(team_players_2014$player_name,
+  team_players_2014$league_name == "England Premier League" |
+  team_players_2014$league_name == "Germany 1. Bundesliga" |
+  team_players_2014$league_name == "Spain LIGA BBVA"
+)
+player_2014 <- subset(player_2014,
+                      player_name %in% player_name_2014)
+player_name_2015 <- subset(team_players_2015$player_name,
+  team_players_2015$league_name == "England Premier League" |
+  team_players_2015$league_name == "Germany 1. Bundesliga" |
+  team_players_2015$league_name == "Spain LIGA BBVA"
+)
+player_2015 <- subset(player_2015,
+                      player_name %in% player_name_2015)
+
+## filter for EACH league
+player_name_2014_eng <- subset(team_players_2014$player_name,
+  team_players_2014$league_name == "England Premier League")
+player_name_2014_ger <- subset(team_players_2014$player_name,
+  team_players_2014$league_name == "Germany 1. Bundesliga")
+player_name_2014_spa <- subset(team_players_2014$player_name,
+  team_players_2014$league_name == "Spain LIGA BBVA")
+
+player_2014_eng <- subset(player_2014,
+                      player_name %in% player_name_2014_eng)
+
+player_2014_ger <- subset(player_2014,
+                          player_name %in% player_name_2014_ger)
+
+player_2014_spa <- subset(player_2014,
+                          player_name %in% player_name_2014_spa)
+
 # export
 # write.csv(player_2014,'player_2014.csv')
 # write.csv(player_2015,'player_2015.csv')
@@ -184,6 +208,43 @@ player_2014.lr <-
      attack_medium+defend_high+defend_medium,
    na.action = na.exclude, data = player_2014)
 summary(player_2014.lr)
+
+player_2014_eng.lr <-
+  lm(overall_rating ~ 
+       height+weight+crossing+finishing+heading_accuracy+short_passing+
+       volleys+dribbling+curve+free_kick_accuracy+long_passing+ball_control+
+       acceleration+sprint_speed+agility+reactions+balance+shot_power+jumping+
+       stamina+strength+long_shots+aggression+interceptions+positioning+vision+
+       penalties+marking+standing_tackle+sliding_tackle+gk_diving+gk_handling+
+       gk_kicking+gk_positioning+gk_reflexes+left_foot+attack_high+
+       attack_medium+defend_high+defend_medium,
+     na.action = na.exclude, data = player_2014_eng)
+summary(player_2014_eng.lr)
+
+player_2014_ger.lr <-
+  lm(overall_rating ~ 
+       height+weight+crossing+finishing+heading_accuracy+short_passing+
+       volleys+dribbling+curve+free_kick_accuracy+long_passing+ball_control+
+       acceleration+sprint_speed+agility+reactions+balance+shot_power+jumping+
+       stamina+strength+long_shots+aggression+interceptions+positioning+vision+
+       penalties+marking+standing_tackle+sliding_tackle+gk_diving+gk_handling+
+       gk_kicking+gk_positioning+gk_reflexes+left_foot+attack_high+
+       attack_medium+defend_high+defend_medium,
+     na.action = na.exclude, data = player_2014_ger)
+summary(player_2014_ger.lr)
+
+player_2014_spa.lr <-
+  lm(overall_rating ~ 
+       height+weight+crossing+finishing+heading_accuracy+short_passing+
+       volleys+dribbling+curve+free_kick_accuracy+long_passing+ball_control+
+       acceleration+sprint_speed+agility+reactions+balance+shot_power+jumping+
+       stamina+strength+long_shots+aggression+interceptions+positioning+vision+
+       penalties+marking+standing_tackle+sliding_tackle+gk_diving+gk_handling+
+       gk_kicking+gk_positioning+gk_reflexes+left_foot+attack_high+
+       attack_medium+defend_high+defend_medium,
+     na.action = na.exclude, data = player_2014_spa)
+summary(player_2014_spa.lr)
+
 
 player_2015.predict <- predict(player_2014.lr, player_2015[,c(6,7,14:51)],
         level=0.95)
