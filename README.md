@@ -1,4 +1,4 @@
-# Soccer_Analysis
+# socceR: Soccer Analysis Using R
 
 # Dataset:
 
