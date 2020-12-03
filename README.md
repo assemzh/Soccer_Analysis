@@ -13,4 +13,4 @@ https://www.kaggle.com/hugomathien/soccer/version/9
 5. Create the prediction model
 6. Wrap up
 
-![til](https://raw.githubusercontent.com/assemzh/Soccer_Analysis/edit/main/home_adv.gif)
+![til](https://github.com/assemzh/Soccer_Analysis/blob/main/home_adv.gif)
