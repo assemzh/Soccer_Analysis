@@ -197,6 +197,8 @@ player_2014_spa <- subset(player_2014,
 # write.csv(player_2015,'player_2015.csv')
 
 # LR
+#cor(player_2014[,c(6,7,14:51)], use="complete.obs")
+
 player_2014.lr <-
   lm(overall_rating ~ 
        height+weight+crossing+finishing+heading_accuracy+short_passing+
@@ -245,6 +247,18 @@ player_2014_spa.lr <-
      na.action = na.exclude, data = player_2014_spa)
 summary(player_2014_spa.lr)
 
+library(ggplot2)
+ggplot(data=player_2014_eng, 
+       aes(x=player_2014_eng$aggression, y=player_2014_eng$overall_rating, 
+           col=player_2014_eng$height, size=player_2014_eng$stamina)) + 
+  geom_point()
+
+player_2014.res <- resid(player_2014.lr)
+plot(player_2014$overall_rating, player_2014.res,
+     ylab="Residuals", xlab="Overall Rating")
+abline(0,0)
+
+plot(player_2014.lr)
 
 player_2015.predict <- predict(player_2014.lr, player_2015[,c(6,7,14:51)],
         level=0.95)
