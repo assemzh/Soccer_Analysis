@@ -4,6 +4,12 @@
 
 https://www.kaggle.com/hugomathien/soccer/version/9 
 
+# Runnable code:
+
+https://www.kaggle.com/maitungduong/soccer
+
+# Main code: soccer.ipynb
+
 # Plan:
 
 1. Preprocess
