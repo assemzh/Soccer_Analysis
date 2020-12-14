@@ -1,22 +1,24 @@
-# socceR: Soccer Analysis Using R
+# Project:
+SocceR - An Analysis of Europe Soccer Database Using R
 
-# Dataset:
+# Data:
+https://www.kaggle.com/hugomathien/soccer
 
-https://www.kaggle.com/hugomathien/soccer/version/9 
+# Report:
+SocceR - An Analysis of Europe Soccer Database Using R.pdf
 
-# Runnable code:
+# Demo (code): 
+(Please run in Kaggle)
 
+## Readily-runnable
 https://www.kaggle.com/maitungduong/soccer
+## Notebook: 
+soccer.ipynb
+## Github:
+https://github.com/assemzh/socceR
 
-# Main code: soccer.ipynb
+# Pitch
+Pitch.pdf
 
-# Plan:
-
-1. Preprocess
-2. Link the data and create the dataframe
-3. Perform Linear/Logistic Regression
-4. Perform PCA
-5. Create the prediction model
-6. Wrap up
-
-![til](https://github.com/assemzh/Soccer_Analysis/blob/main/home_adv.gif)
+# Final presentation
+Final Presentation.pdf
